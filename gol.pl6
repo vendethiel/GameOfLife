@@ -26,7 +26,7 @@ class Life {
 		}
 	}
 
-	method alive(Int $y, Int $x) returns Bool {
+	method alive(Int $y, Int $x --> Bool) {
 		0 <= $y <= $.dim && 0 <= $x <= $.dim && @.grid[$y][$x] // False;
 	}
 
