@@ -37,10 +37,12 @@ class Life {
 	}
 }
 
-my Life $life .= new(8);
+sub MAIN(Int $dim = 8) {
+	my Life $life .= new($dim);
 
-loop {
-	clear;
-	say ~$life;
-	$life.tick;
+	loop {
+		clear;
+		say ~$life;
+		$life.tick;
+	}
 }
