@@ -20,8 +20,8 @@ class Life {
 		for ^$.dim X ^$.dim -> $y, $x {
 			my $neigh = [+] map({ $prev.alive($^y, $^x); }, ($y - 1, $y, $y + 1 X $x - 1, $x, $x + 1)), -$prev.alive($y, $x);
 			@.grid[$y][$x] = do given $prev.alive($y, $x) {
-				when 0 { $neigh ~~ 2 | 3 } # currently dead
-				when 1 { $neigh ~~ 3     } # currently alive
+				when 0 { $neigh == 2 | 3 } # currently dead
+				when 1 { $neigh == 3     } # currently alive
 			}
 		}
 	}
