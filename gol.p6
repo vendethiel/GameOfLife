@@ -1,3 +1,4 @@
+#!/usr/bin/env perl6
 sub clear {
 	$*OS eq 'MSWin32' ?? 'cls' !! 'clear'
 	==> shell;
@@ -8,11 +9,11 @@ class Life {
 	has Int $.dim;
 
 	multi method new(@grid) {
-		Life.bless(dim => @grid.elems, grid => @grid);
+		self.bless(dim => @grid.elems, grid => @grid);
 	}
 
 	multi method new(Int $dim) {
-		Life.new([[True, False].roll($dim)] xx $dim);
+		self.new([[True, False].roll($dim)] xx $dim);
 	}
 
 	method tick {
@@ -33,7 +34,7 @@ class Life {
 	method Str { @.grid.map(*.map({$^v ?? "+" !! " "}).join).join("\n") }
 
 	method clone {
-		Life.new(map({ [$^row.clone] }, @.grid));
+		self.new(map({ [$^row.clone] }, @.grid));
 	}
 }
 
