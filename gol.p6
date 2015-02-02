@@ -13,7 +13,7 @@ class Life {
 	}
 
 	multi method new(Int $dim) {
-		self.new([[True, False].roll($dim)] xx $dim);
+		self.new([Boll.roll($dim)] xx $dim);
 	}
 
 	method tick {
