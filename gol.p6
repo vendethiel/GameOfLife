@@ -18,8 +18,9 @@ class Life {
 
 	method tick {
 		my $prev = self.clone;
-		for ^$!dim X ^$!dim -> $y, $x {
-      my $neigh = [+] map({ $prev.alive($y + $^i, $x + $^j); }, (-1, 0, +1 X -1, 0, +1)), -$prev.alive($y, $x);
+		for ^$!dim X ^$!dim -> ($y, $x) {
+      my $neigh = [+] map(-> ($i, $j) { $prev.alive($y + $i, $x + $j) }, [-1, 0, +1 X -1, 0, +1]);
+      $neigh -= $prev.alive($y, $x); # remove current cell
 			@!grid[$y][$x] = so do given $prev.alive($y, $x) {
 				when 0 { $neigh == 2 | 3 } # currently dead
 				when 1 { $neigh == 3	 }   # currently alive
@@ -44,7 +45,7 @@ sub MAIN(Int $dim = 8) {
 	my Life $life = Life::build($dim);
 
   loop {
-		clear;
+    clear;
 		say ~$life;
 		$life.tick;
 	}
